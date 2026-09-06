@@ -2,10 +2,6 @@ README.md
 
 # Legal Clause Risk Classifier Benchmark
 
-README.md
-
-# Legal Clause Risk Classifier Benchmark
-
 ## Project Overview
 
 ## Objective
