@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "clause": "Vendor shall be liable for all direct, indirect, incidental, and consequential damages without any monetary cap.",
+    "ground_truth": "High Risk"
+  },
+  {
+    "id": 2,
+    "clause": "Client shall indemnify, defend, and hold harmless Vendor from any third-party claims arising from the services, regardless of whether such claims result from Vendor's negligence.",
+    "ground_truth": "High Risk"
+  },
+  {
+    "id": 3,
+    "clause": "Either party may terminate this Agreement immediately and without notice upon the occurrence of any event that, in its sole discretion, it considers detrimental to its business.",
+    "ground_truth": "High Risk"
+  },
+  {
+    "id": 4,
+    "clause": "Customer assumes unlimited responsibility for all losses, damages, penalties, and expenses arising from use of the Vendor's platform.",
+    "ground_truth": "High Risk"
+  },
+  {
+    "id": 5,
+    "clause": "Vendor may terminate the Agreement immediately upon written notice for any breach, regardless of the materiality of the breach or whether the breach can be cured.",
+    "ground_truth": "High Risk"
+  },
+  {
+    "id": 6,
+    "clause": "The Company may modify the service fees at its sole discretion upon five business days' notice by email.",
+    "ground_truth": "Medium Risk"
+  },
+  {
+    "id": 7,
+    "clause": "Customer shall provide notice of any service issue within a reasonable period following discovery of the issue.",
+    "ground_truth": "Medium Risk"
+  },
+  {
+    "id": 8,
+    "clause": "Invoices are payable according to the payment schedule determined by Vendor from time to time.",
+    "ground_truth": "Medium Risk"
+  },
+  {
+    "id": 9,
+    "clause": "Vendor may revise the scope of recurring services and associated charges upon written notice without requiring Customer's prior approval.",
+    "ground_truth": "Medium Risk"
+  },
+  {
+    "id": 10,
+    "clause": "Customer must provide written notice of any billing dispute within a commercially reasonable timeframe after receiving the applicable invoice.",
+    "ground_truth": "Medium Risk"
+  },
+  {
+    "id": 11,
+    "clause": "Either party may terminate this Agreement by providing at least 30 days' prior written notice.",
+    "ground_truth": "Standard / Low Risk"
+  },
+  {
+    "id": 12,
+    "clause": "All invoices are payable within 45 days of receipt. Late payments will incur interest at a rate of 1.5% per month.",
+    "ground_truth": "Standard / Low Risk"
+  },
+  {
+    "id": 13,
+    "clause": "Each party shall maintain commercially reasonable safeguards to protect confidential information received from the other party.",
+    "ground_truth": "Standard / Low Risk"
+  },
+  {
+    "id": 14,
+    "clause": "Either party may request changes to the scope of services, and any resulting changes in fees or delivery dates must be agreed upon in writing by both parties.",
+    "ground_truth": "Standard / Low Risk"
+  },
+  {
+    "id": 15,
+    "clause": "The parties shall comply with all applicable laws and regulations in performing their respective obligations under this Agreement.",
+    "ground_truth": "Standard / Low Risk"
+  }
+]
