@@ -20,31 +20,44 @@ LABELS = [
 
 
 def load_results():
+
     with open(
         "benchmark_results.json",
         "r",
         encoding="utf-8"
     ) as file:
+
         return json.load(file)
 
 
 def calculate_quality_metrics(results, strategy):
 
     rows = [
-        row for row in results
+        row
+        for row in results
         if row["strategy"] == strategy
         and row["prediction"] != "ERROR"
     ]
 
-    y_true = [row["ground_truth"] for row in rows]
-    y_pred = [row["prediction"] for row in rows]
+    y_true = [
+        row["ground_truth"]
+        for row in rows
+    ]
+
+    y_pred = [
+        row["prediction"]
+        for row in rows
+    ]
 
     return {
+
         "sample_count": len(rows),
+
         "accuracy": round(
             accuracy_score(y_true, y_pred),
             4
         ),
+
         "macro_precision": round(
             precision_score(
                 y_true,
@@ -55,6 +68,7 @@ def calculate_quality_metrics(results, strategy):
             ),
             4
         ),
+
         "macro_recall": round(
             recall_score(
                 y_true,
@@ -65,6 +79,7 @@ def calculate_quality_metrics(results, strategy):
             ),
             4
         ),
+
         "macro_f1": round(
             f1_score(
                 y_true,
@@ -75,11 +90,13 @@ def calculate_quality_metrics(results, strategy):
             ),
             4
         ),
+
         "confusion_matrix": confusion_matrix(
             y_true,
             y_pred,
             labels=LABELS
         ).tolist(),
+
         "classification_report": classification_report(
             y_true,
             y_pred,
@@ -92,7 +109,8 @@ def calculate_quality_metrics(results, strategy):
 def calculate_efficiency_metrics(results, strategy):
 
     rows = [
-        row for row in results
+        row
+        for row in results
         if row["strategy"] == strategy
         and row["prediction"] != "ERROR"
     ]
@@ -100,28 +118,35 @@ def calculate_efficiency_metrics(results, strategy):
     df = pd.DataFrame(rows)
 
     return {
+
         "avg_input_tokens": round(
             df["input_tokens"].mean(),
             2
         ),
+
         "avg_output_tokens": round(
             df["output_tokens"].mean(),
             2
         ),
+
         "avg_total_tokens": round(
             df["total_tokens"].mean(),
             2
         ),
+
         "avg_latency_ms": round(
             df["latency_ms"].mean(),
             2
         ),
+
         "total_input_tokens": int(
             df["input_tokens"].sum()
         ),
+
         "total_output_tokens": int(
             df["output_tokens"].sum()
         ),
+
         "total_tokens": int(
             df["total_tokens"].sum()
         )
@@ -217,6 +242,7 @@ def main():
         "w",
         encoding="utf-8"
     ) as file:
+
         json.dump(
             final_metrics,
             file,
