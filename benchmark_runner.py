@@ -46,9 +46,10 @@ OUTPUT_SCHEMA = {
 
 
 def classify_clause(clause, prompt_template):
+
     prompt = prompt_template.format(clause=clause)
 
-    start = time.perf_counter()
+    start_time = time.perf_counter()
 
     response = client.responses.create(
         model=MODEL,
@@ -63,26 +64,37 @@ def classify_clause(clause, prompt_template):
         }
     )
 
-    latency_ms = (time.perf_counter() - start) * 1000
+    end_time = time.perf_counter()
+
+    latency_ms = (end_time - start_time) * 1000
 
     result = json.loads(response.output_text)
+
+    usage = response.usage
 
     return {
         "prediction": result["risk_category"],
         "reasoning": result["reasoning"],
-        "input_tokens": response.usage.input_tokens,
-        "output_tokens": response.usage.output_tokens,
-        "total_tokens": response.usage.total_tokens,
+        "input_tokens": usage.input_tokens,
+        "output_tokens": usage.output_tokens,
+        "total_tokens": usage.total_tokens,
         "latency_ms": round(latency_ms, 2)
     }
 
 
 def load_dataset():
-    with open("test_clauses.json", "r", encoding="utf-8") as file:
+
+    with open(
+        "test_clauses.json",
+        "r",
+        encoding="utf-8"
+    ) as file:
+
         return json.load(file)
 
 
 def run_benchmark(dataset):
+
     results = []
 
     strategies = {
@@ -96,9 +108,10 @@ def run_benchmark(dataset):
 
         for item in dataset:
 
-            print(f"Clause {item['id']}")
+            print(f"Processing Clause {item['id']}")
 
             try:
+
                 result = classify_clause(
                     item["clause"],
                     prompt
@@ -115,7 +128,7 @@ def run_benchmark(dataset):
             except Exception as error:
 
                 print(
-                    f"Error on clause {item['id']}: {error}"
+                    f"Error processing clause {item['id']}: {error}"
                 )
 
                 results.append({
@@ -135,11 +148,13 @@ def run_benchmark(dataset):
 
 
 def save_results(results):
+
     with open(
         "benchmark_results.json",
         "w",
         encoding="utf-8"
     ) as file:
+
         json.dump(
             results,
             file,
@@ -156,5 +171,5 @@ if __name__ == "__main__":
 
     save_results(results)
 
-    print("\nBenchmark completed.")
-    print("Saved: benchmark_results.json")
+    print("\nBenchmark completed successfully.")
+    print("Results saved to benchmark_results.json")
